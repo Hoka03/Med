@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import ValidationError
+from django.core.validators import ValidationError, MinValueValidator
 from datetime import datetime
 
 from apps.sponsors.validations import phone_validate
@@ -21,8 +21,8 @@ class Student(models.Model):
     full_name = models.CharField(max_length=200)
     phone_number = models.CharField(max_length=13, validators=[phone_validate])
     level = models.PositiveSmallIntegerField(choices=LevelChoices.choices)
-    contract = models.DecimalField(max_digits=20, decimal_places=1)
-    sponsored_amount = models.DecimalField(max_digits=20, decimal_places=1)
+    contract = models.DecimalField(max_digits=20, decimal_places=1, validators=[MinValueValidator(0)])
+    sponsored_amount = models.DecimalField(max_digits=20, decimal_places=1, default=0)
     year = models.PositiveIntegerField(default=datetime.now().year)
 
     def clean(self):

@@ -24,13 +24,13 @@ class Sponsor(models.Model):
 
     full_name = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=13, validators=[phone_validate])
-    amount = models.DecimalField(max_digits=15, decimal_places=1)
+    amount = models.DecimalField(max_digits=15, decimal_places=1, validators=[MinValueValidator(0)])
     company_name = models.CharField(max_length=250, blank=True, null=True)
     type_choice = models.PositiveSmallIntegerField(choices=TypeChoices.choices)
     status = models.PositiveSmallIntegerField(choices=StatusChoices.choices)
     payment_type = models.PositiveSmallIntegerField(choices=PaymentChoices.choices)
     created_at = models.DateTimeField(auto_now_add=True)
-    spent_amount = models.DecimalField(max_digits=15, decimal_places=1, validators=[MinValueValidator(0)])
+    spent_amount = models.DecimalField(max_digits=15, decimal_places=1, validators=[MinValueValidator(0)], default=0)
 
     def clean(self):
         super().clean()
