@@ -13,6 +13,7 @@ class UniversityAdmin(admin.ModelAdmin):
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('university', 'full_name', 'phone_number', 'level', 'contract', 'sponsored_amount', 'year')
     list_display_links = list_display
+    readonly_fields = ('sponsored_amount',)
     list_filter = ('university', 'level')
     search_fields = ('full_name', 'phone_number')
     list_per_page = 10

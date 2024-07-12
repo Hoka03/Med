@@ -8,6 +8,7 @@ class SponsorAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'phone_number', 'amount', 'company_name', 'type_choice', 'status', 'payment_type',
                     'created_at', 'spent_amount')
     list_display_links = list_display
+    readonly_fields = ('spent_amount',)
     search_fields = ('full_name', 'phone_number', 'company_name')
     list_per_page = 10
 
