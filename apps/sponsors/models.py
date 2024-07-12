@@ -43,20 +43,13 @@ class Sponsor(models.Model):
         if self.type_choice == self.TypeChoices.PHYSICAL_PERSON and self.company_name:
             raise ValidationError('Company name should not be provided for Physical Persons.')
 
-    def spend_money(self, amount):
-        if amount > self.amount:
-            raise ValidationError('Cannot spend more than the available amount.')
-        self.amount -= amount
-        self.spent_amount += amount
-        self.save()
-
     def __str__(self):
         return f"{self.full_name} ({self.get_type_choice_display()})"
 
 
 class SponsorStudent(models.Model):
     sponsor = models.ForeignKey(Sponsor, on_delete=models.PROTECT)
-    student = models.ForeignKey(Student, on_delete=models.PROTECT)
+    student = models.ForeignKey(Student, on_delete=models.PROTECT, related_name='sponsor_student')
     amount = models.DecimalField(max_digits=15, decimal_places=1, validators=[MinValueValidator(0)])
 
     def __str__(self):

@@ -31,8 +31,37 @@ class Student(models.Model):
         if not self.university:
             raise ValidationError('University must be entered.')
 
-        if self.sponsored_amount > self.contract:
-            raise ValidationError('Sponsored amount cannot exceed the contract amount')
+        # if self.sponsored_amount > self.contract:
+        #     raise ValidationError('Sponsored amount cannot exceed the contract amount')
+    #
+    #     current_year = datetime.now().year
+    #     if self.year < current_year:
+    #         old_contract = self.contract
+    #         new_contract = self.get_new_contract_price()
+    #
+    #         if old_contract != new_contract:
+    #             extra = new_contract - old_contract
+    #
+    #             sponsor_student = self.sponsor_student.all().order_by('-created_at').first()
+    #             if sponsor_student:
+    #                 sponsor = sponsor_student.sponsor
+    #
+    #                 # Adjust the amounts
+    #                 sponsor_student.amount += extra
+    #                 sponsor.used_amount += extra
+    #                 self.sponsored_amount += extra
+    #
+    #                 sponsor_student.save()
+    #                 sponsor.save()
+    #
+    #             self.contract = new_contract
+    #             self.year = current_year
+    #
+    # def get_new_contract_price(self):
+    #     # Implement the logic to determine the new contract price
+    #     # For example, this could involve a fixed percentage increase or based on some external data
+    #     new_price = self.contract * 1.05  # Example: 5% increase
+    #     return new_price
 
     def __str__(self):
         return self.full_name
