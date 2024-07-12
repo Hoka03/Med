@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SponsorStudent Detail</title>
+</head>
+<body>
+    <h1>SponsorStudent Detail</h1>
+
+    <ol>
+        <li><b>{{ sponsor_students.sponsor }}</b></li>
+        <li><b>{{ sponsor_students.student }}</b></li>
+        <li><b>{{ sponsor_students.amount }}</b></li>
+    </ol>
+    <a href="{% url 'sponsor' %}"><button>Back To Sponsor List</button></a>
+</body>
+</html>

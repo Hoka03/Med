@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block content %}
+<body>
+<p></p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Student</button>
+    </form>
+    <div>
+        <h2>Students</h2>
+        <ol>
+            {% for student in students %}
+            <li>
+                    <strong>university: </strong><p>{{ student.university }}</p>
+                    <strong>full_name: </strong><p>{{ student.full_name }}</p>
+                    <strong>phone_number: </strong><p>{{ student.phone_number }}</p>
+                    <strong>Level: </strong><p>{{ student.level }}</p>
+                    <strong>contract: </strong><p>{{ student.contract }}</p>
+                    <strong>sponsored_amount: </strong><p>{{ student.sponsored_amount }}</p>
+                    <a href="{% url 'student_edit' student.pk %}"><button>Update</button></a>
+                    <a href="{% url 'student_delete' student.pk %}"><button style="color: red;">Delete</button></a>
+                    <a href="{% url 'student_detail' student.pk %}"><button style="color: blue;">Detail</button></a>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+</body>
+{% endblock %}

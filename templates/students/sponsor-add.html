@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="modal-body">
+    <div class="container-fluid">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+        <!--        {% for sponsor in sponsors %}-->
+        <!--        <div class="row">-->
+        <!--            <div class="col-md-4">{{ sponsor.full_name }}</div>-->
+        <!--            <div class="col-md-4 ml-auto">.col-md-4 .ml-auto</div>-->
+        <!--        </div>-->
+        <!--        {% endfor %}-->
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% block content %}
+<body>
+<p></p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create SponsorStudent</button>
+    </form>
+
+    <div>
+        <h2>SponsorStudents</h2>
+        <ol>
+            {% for sponsor_student in sponsor_students %}
+            <li>
+                    <strong>full_name: </strong><p>{{ sponsor_student.sponsor }}</p>
+                    <strong>phone_number: </strong><p>{{ sponsor_student.student }}</p>
+                    <strong>amount: </strong><p>{{ sponsor_student.amount }}</p>
+                    <a href="{% url 'sponsor_student_edit' sponsor_student.pk %}"><button style="color: yellow;">Update</button></a>
+                    <a href="{% url 'sponsor_student_delete' sponsor_student.pk %}"><button style="color: red;">Delete</button></a>
+                    <a href="{% url 'sponsor_student_detail' sponsor_student.pk %}"><button style="color: blue;">Detail</button></a>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+</body>
+{% endblock %}

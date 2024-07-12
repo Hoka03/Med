@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+</head>
+<body>
+<form method="POST">
+    {% csrf_token %}
+    <h3>Are you sure you want to delete this student?</h3>
+    <button type="submit">Confirm</button>
+    <a href="{% url 'student' %}">Cancel</a>
+</form>
+</body>
+</html>

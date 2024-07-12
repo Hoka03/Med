@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student</title>
+    <style>
+        .box{
+        display:flex;
+        grid-gap: 10px;
+        align-items:center;
+        }
+        a button{
+        display:flex;
+        grid-gap:10px;
+        padding:10px;
+        align-items:center;
+        }
+        a{
+        text-decoration:none;
+        }
+        a button span{
+        font-size:20px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Student Details</h1>
+    <ol>
+        <li><b>university: </b>{{ students.university }}</li>
+        <li><b>full_name: </b>{{ students.full_name }}</li>
+        <li><b>phone_number: </b>{{ students.phone_number }}</li>
+        <li><b>level: </b>{{ students.level }}</li>
+        <li><b>contract: </b>{{ students.contract }}</li>
+        <li><b>sponsored_amount: </b>{{ students.sponsored_amount }}</li>
+    </ol>
+
+    <div class="box">
+        <p class="left">
+            Talabaga homiylar
+        </p>
+     <a href="#">
+            <button class="right">
+            <span>+</span>
+            Homiy qo`shish
+        </button>
+     </a>
+    </div>
+
+    <a href="{% url 'student' %}"><button>Back To Sponsor List</button></a>
+</body>
+</html>

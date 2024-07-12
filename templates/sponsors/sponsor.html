@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% block content %}
+<body>
+<p></p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Sponsor</button>
+    </form>
+    <p>
+    <form method="GET">
+        {% for field in filter.form %}
+            <label for="{{ field.id_for_label }}">{{ field.label }}: </label>
+            <select name="{{ field.name }}" id="{{ field.id_for_label }}">
+                {% for value, label in field.field.choices %}
+                <option value="{{ value }}">{{ label }}</option>
+                {% endfor %}
+            </select>
+        {% endfor %}
+        <p>
+        <div class="col-12 form-group mg-t-8">
+            <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">SEARCH</button>
+        </div>
+    </form>
+
+    <div>
+        <h2>Sponsors</h2>
+        <ol>
+            {% for sponsor in sponsors %}
+            <li>
+                    <strong>full_name: </strong><p>{{ sponsor.full_name }}</p>
+                    <strong>phone_number: </strong><p>{{ sponsor.phone_number }}</p>
+                    <strong>amount: </strong><p>{{ sponsor.amount }}</p>
+                    <strong>company_name: </strong><p>{{ sponsor.company_name }}</p>
+                    <strong>type: </strong><p>{{ sponsor.type }}</p>
+                    <strong>status: </strong><p>{{ sponsor.get_status_display }}</p>
+                    <strong>payment_type: </strong><p>{{ sponsor.get_payment_type_display }}</p>
+                    <strong>spent_amount: </strong><p>{{ sponsor.spent_amount }}</p>
+                    <a href="{% url 'sponsor_edit' sponsor.pk %}"><button style="color: yellow;">Update</button></a>
+                    <a href="{% url 'sponsor_delete' sponsor.pk %}"><button style="color: red;">Delete</button></a>
+                    <a href="{% url 'sponsor_detail' sponsor.pk %}"><button style="color: blue;">Detail</button></a>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+</body>
+{% endblock %}

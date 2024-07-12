@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sponsor</title>
+</head>
+<body>
+<form method="POST">
+    {% csrf_token %}
+    <h3>Are you sure you want to delete this sponsor?</h3>
+    <button type="submit">Confirm</button>
+    <a href="{% url 'sponsor' %}">Cancel</a>
+</form>
+</body>
+</html>

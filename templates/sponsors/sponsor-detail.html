@@ -1,0 +1,23 @@
+<!-- sponsor_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sponsor Details</title>
+</head>
+<body>
+    <h1>Sponsor Details</h1>
+    <ol>
+        <li><b>full_name: </b>{{ sponsors.full_name }}</li>
+        <li><b>phone_number: </b>{{ sponsors.phone_number }}</li>
+        <li><b>amount: </b>{{ sponsors.amount }}</li>
+        <li><b>company_name: </b>{{ sponsors.company_name }}</li>
+        <li><b>type_choice: </b>{{ sponsors.type_choice }}</li>
+        <li><b>status: </b>{{ sponsors.status }}</li>
+        <li><b>payment_type: </b>{{ sponsors.payment_type }}</li>
+        <li><b>spent_amount: </b>{{ sponsors.spent_amount }}</li>
+    </ol>
+    <a href="{% url 'sponsor' %}"><button>Back To Sponsor List</button></a>
+</body>
+</html>
