@@ -1,9 +1,10 @@
 from django import forms
+from django.core.validators import ValidationError
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
+from django.contrib import messages
 
-
-from apps.sponsors.models import Sponsor, SponsorStudent
+from apps.sponsors.models import SponsorStudent
 
 
 class SponsorStudentCreateView(CreateView):
@@ -22,19 +23,26 @@ class SponsorStudentCreateView(CreateView):
 
 
 class SponsorStudentUpdateView(UpdateView):
-    model = Sponsor
+    model = SponsorStudent
     fields = ['sponsor', 'student', 'amount']
-    template_name = 'sponsor_students/sponsor_student-edit.html'
-    success_url = reverse_lazy('sponsor')
+    template_name = 'sponsor_students/sponsor-student-edit.html'
+    success_url = reverse_lazy('sponsor_student')
+
+    def form_valid(self, form):
+        try:
+            return super().form_valid(form)
+        except ValidationError as e:
+            messages.error(self.request, e.message)
+            return self.form_invalid(form)
 
 
 class SponsorStudentDeleteView(DeleteView):
-    model = Sponsor
-    template_name = 'sponsor_students/sponsor_student_delete.html'
+    model = SponsorStudent
+    template_name = 'sponsor_students/sponsor-student-delete.html'
     success_url = reverse_lazy('sponsor')
 
 
 class SponsorStudentDetail(DetailView):
     model = SponsorStudent
-    template_name = 'sponsor_students/sponsor_student_detail.html'
+    template_name = 'sponsor_students/sponsor-student-detail.html'
     context_object_name = 'sponsor_students'

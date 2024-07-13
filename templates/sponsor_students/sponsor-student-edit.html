@@ -5,11 +5,17 @@
     <title>Title</title>
 </head>
 <body>
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Update</button>
-        <a href="{% url 'sponsor_student' %}"><button>Cancel</button></a>
+        <a href="{% url 'sponsor_student' %}"><input type="button" value="cancel"></a>
     </form>
 </body>
 </html>

@@ -5,8 +5,9 @@ from .models import University, Student
 
 @admin.register(University)
 class UniversityAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
+    list_display = ('id', 'name', 'slug')
     list_display_links = list_display
+    prepopulated_fields = {'slug': ['name']}
 
 
 @admin.register(Student)

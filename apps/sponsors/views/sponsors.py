@@ -1,5 +1,5 @@
 from django import forms
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -18,6 +18,7 @@ class SponsorCreateView(CreateView):
         class Meta:
             model = Sponsor
             fields = '__all__'
+            exclude = ('spent_amount', 'status')
 
     model = Sponsor
     template_name = 'sponsors/sponsor.html'
@@ -37,8 +38,9 @@ class SponsorCreateView(CreateView):
         form = self.SponsorForm(data=data)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Successfully created.')
         else:
-            messages.error(request, form.errors)
+            messages.error(request, 'There were errors in your form')
         return redirect('sponsor')
 
 

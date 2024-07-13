@@ -12,6 +12,7 @@ class StudentCreateView(CreateView):
         class Meta:
             model = Student
             fields = '__all__'
+            exclude = ('sponsored_amount',)
 
     model = Student
     extra_context = {
@@ -26,6 +27,7 @@ class StudentCreateView(CreateView):
         form = self.StudentForm(data=data)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Student Created.')
         else:
             messages.error(request, form.errors)
         return redirect('student')

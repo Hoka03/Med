@@ -2,6 +2,9 @@
 {% block content %}
 <body>
 <p></p>
+    {% for message in messages %}
+        <h2 style="color: red;">{{ message }}</h2>
+    {% endfor %}
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
@@ -22,7 +25,7 @@
             <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">SEARCH</button>
         </div>
     </form>
-
+        
     <div>
         <h2>Sponsors</h2>
         <ol>
@@ -31,11 +34,13 @@
                     <strong>full_name: </strong><p>{{ sponsor.full_name }}</p>
                     <strong>phone_number: </strong><p>{{ sponsor.phone_number }}</p>
                     <strong>amount: </strong><p>{{ sponsor.amount }}</p>
-                    <strong>company_name: </strong><p>{{ sponsor.company_name }}</p>
-                    <strong>type: </strong><p>{{ sponsor.type }}</p>
+                    {% if sponsor.company_name %}
+                        <strong>company_name: </strong><p>{{ sponsor.company_name }}</p>
+                    {% else %}
+                        <strong>company_name: </strong><p>&nbsp;</p>
+                    {% endif %}
+                    <strong>type: </strong><p>{{ sponsor.get_type_choice_display }}</p>
                     <strong>status: </strong><p>{{ sponsor.get_status_display }}</p>
-                    <strong>payment_type: </strong><p>{{ sponsor.get_payment_type_display }}</p>
-                    <strong>spent_amount: </strong><p>{{ sponsor.spent_amount }}</p>
                     <a href="{% url 'sponsor_edit' sponsor.pk %}"><button style="color: yellow;">Update</button></a>
                     <a href="{% url 'sponsor_delete' sponsor.pk %}"><button style="color: red;">Delete</button></a>
                     <a href="{% url 'sponsor_detail' sponsor.pk %}"><button style="color: blue;">Detail</button></a>
